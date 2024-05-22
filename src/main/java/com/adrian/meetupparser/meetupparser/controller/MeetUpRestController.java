@@ -5,12 +5,11 @@ import com.adrian.meetupparser.meetupparser.entity.dto.InputDTO;
 import com.adrian.meetupparser.meetupparser.entity.dto.MeetUpResponseDTO;
 import com.adrian.meetupparser.meetupparser.service.IMeetUpService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class MeetUpRestController {
 
     @Autowired
@@ -18,12 +17,11 @@ public class MeetUpRestController {
 
     @PostMapping(path="/meetups")
     public  MeetUpResponseDTO meetUp(@RequestBody InputDTO input){
-        if(input.data().size() == 0){
+        if(input.data().isEmpty()){
             throw new EmptyMeetUpException("The JSON provided has no available data.");
         }
-        MeetUpResponseDTO meetUpResponseDTO = meetUpService.parseRequest(input.data());
 
-        return meetUpResponseDTO;
+        return meetUpService.parseRequest(input.data());
     }
 
 }
