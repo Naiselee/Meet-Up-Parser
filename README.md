@@ -55,3 +55,14 @@ There is only one endpoint but hey, if in the future there are any more you can 
 There is still a lot of room for improvement (of course 😁), for instance we could change the way the service ended up being so clustered in some methods, make sure the methods have single responsibility and make the code more readable.
 
 Decided to work only with _records_ since all data is final and makes it more readable, concise and immutable.
+
+As for the problem to resolve, I decided to create an endpoint that accepts data under some constraints:
+* The opening object is a list of meetups and must have the name of *input* as in the example provided.
+* If there are no elements in the array, it will return an error with status 400.
+
+Still many more controls to add on the code, but does the work and provides a result exact to the example provided.
+
+There is only one controller and one service. The controller offers the endpoint and expects the body to contains a JSON with the same format as shown above.
+The service has all the logic and pretty much handles all the data transformation.
+
+Decided to use StringBuilder to manage and append all the data in one single and long string per meet up, and then add the result of this string into an array to be returned.
